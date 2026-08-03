@@ -1,0 +1,43 @@
+{
+  "name": "@preplabs/validator",
+  "version": "1.0.0",
+  "description": "A lightweight TypeScript validation library focused on common backend validation.",
+  "author": "PreyLabs",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "validator",
+    "validation",
+    "typescript",
+    "node",
+    "backend",
+    "schema",
+    "regex"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "tsc",
+    "prebuild": "npm run clean",
+    "dev": "tsx watch src/index.ts",
+    "dev:run": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "prepare": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.4",
+    "typescript": "^5.9.2",
+    "vitest": "^4.1.10"
+  }
+}
