@@ -4,21 +4,19 @@ export * from "./primitive-validators/object.ts";
 export * from "./primitive-validators/array.ts";
 export * from "./primitive-validators/boolean.ts";
 export * from "./primitive-validators/date.ts";
+
+export * from "./schema/schema.ts";
+
+export * from "./composite-validators/literal.ts";
+export * from "./composite-validators/enums.ts";
+export * from "./composite-validators/tuple.ts";
+export * from "./composite-validators/union.ts";
+export * from "./composite-validators/optional.ts";
+export * from "./composite-validators/refine.ts";
+export * from "./composite-validators/any.ts";
+
+export * from "./async/async.ts";
+
 export * from "./search/search.ts";
-
+export * from "./utlities/regex.ts";
 export * from "./types.ts";
-// const check=string().min(3);
-// console.log(check.check("tjkddjnbghvjbnk"));
-
-// console.log(string().safeUser("prepfh"));
-// console.log(string().safePsw(123));
-// console.log(string().endsWith("hello").startsWith("e").safeCheck("hello"));
-// console.log(search()
-//     .caseSensitive()
-//     .contains("prep"));
-import { search } from "./search/search.ts";
-const regex = search().contains("rep");
-
-console.log(regex);
-console.log(regex.test("Prey"));
-console.log(regex.test("prey"));

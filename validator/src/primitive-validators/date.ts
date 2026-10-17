@@ -1,4 +1,10 @@
+import type { dateValidator } from "../types.ts";
+
 class DateValidator {
+    #before?: Date;
+    #after?: Date;
+    #future = false;
+    #past = false;
 
     before(date: Date): this {
         this.#before = date;
@@ -10,13 +16,29 @@ class DateValidator {
         return this;
     }
 
-    #before?: Date;
-    #after?: Date;
+    future(): this {
+        this.#future = true;
+        return this;
+    }
 
-    check(value: unknown) {
+    past(): this {
+        this.#past = true;
+        return this;
+    }
 
-        if (!(value instanceof Date)) {
-            throw new Error("Expected a Date.");
+    check(value: unknown): dateValidator {
+        if (!(value instanceof Date) || isNaN(value.getTime())) {
+            throw new Error("Expected a valid Date.");
+        }
+
+        const now = new Date();
+
+        if (this.#future && value <= now) {
+            throw new Error("Date must be in the future.");
+        }
+
+        if (this.#past && value >= now) {
+            throw new Error("Date must be in the past.");
         }
 
         if (this.#before && value > this.#before) {
@@ -31,9 +53,19 @@ class DateValidator {
             ok: true,
             value
         };
-
     }
 
+    safeCheck(value: unknown): dateValidator {
+        try {
+            return this.check(value);
+        } catch (err: any) {
+            return {
+                ok: false,
+                value: new Date(0),
+                error: err.message
+            };
+        }
+    }
 }
 
 export function date() {
