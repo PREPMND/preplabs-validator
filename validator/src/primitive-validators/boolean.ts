@@ -1,7 +1,7 @@
+import type { booleanValidator } from "../types.ts";
+
 class BooleanValidator {
-
-    check(value: unknown) {
-
+    check(value: unknown): booleanValidator {
         if (typeof value !== "boolean") {
             throw new Error("Expected a boolean.");
         }
@@ -10,11 +10,9 @@ class BooleanValidator {
             ok: true,
             value
         };
-
     }
 
-    safeCheck(value: unknown) {
-
+    safeCheck(value: unknown): booleanValidator {
         try {
             return this.check(value);
         } catch (err: any) {
@@ -24,10 +22,9 @@ class BooleanValidator {
                 error: err.message
             };
         }
-
     }
 
-    isTrue(value: unknown) {
+    isTrue(value: unknown): booleanValidator {
         if (value !== true) {
             throw new Error("Expected true.");
         }
@@ -38,7 +35,7 @@ class BooleanValidator {
         };
     }
 
-    isFalse(value: unknown) {
+    isFalse(value: unknown): booleanValidator {
         if (value !== false) {
             throw new Error("Expected false.");
         }
@@ -48,7 +45,6 @@ class BooleanValidator {
             value: false
         };
     }
-
 }
 
 export function boolean() {
